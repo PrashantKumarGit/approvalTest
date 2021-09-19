@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+        string(name: 'Greeting', defaultValue: '', description: 'How should I greet the world?')
     }
     environment {
                 jiraStoryList = "foo"
