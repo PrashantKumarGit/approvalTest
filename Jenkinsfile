@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+                jiraStoryList = "foo"
+     }
     stages {
         stage('Build') {
             steps {
@@ -11,20 +14,19 @@ pipeline {
                 echo 'Testing..'
             }
         }
-        stage('Approval') {
-            environment {
-                jiraStoryList = "foo"
-            }
+        stage('Get Jira Story') {
             steps {
                 script {
                     jiraStoryList = sh(script: "python jiraStory.py", returnStdout: true).toString().trim()
                     echo 'Story ID: ${jiraStoryList}'
                 }
             }
+        }
+        stage('Approval') {
             steps {
                 echo 'Approving...'
                 timeout(time: 1, unit: 'DAYS') {
-                    input message: "Checklist", submitter: 'prashantkumar'
+                    input message: "${jiraStoryList}", submitter: 'prashantkumar'
                 }
             }
         }
