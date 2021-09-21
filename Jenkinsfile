@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'Greeting', defaultValue: 'Good Morning', description: 'How should I greet the world?')
+        string(name: 'StoryLine', defaultValue: '', description: 'How should I greet the world?')
     }
     environment {
                 jiraStoryList = "foo"
@@ -20,7 +20,7 @@ pipeline {
         stage('Get Jira Story') {
             steps {
                 script {
-                    jiraStoryList = sh(script: "python jiraStory.py ${params.Greeting}", returnStdout: true).toString().trim()
+                    jiraStoryList = sh(script: "python jiraStory.py ${params.StoryLine}", returnStdout: true).toString().trim()
                     echo 'Story ID: ${jiraStoryList}'
                 }
             }
