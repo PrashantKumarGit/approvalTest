@@ -1,4 +1,4 @@
 import sys
 
-jira_desc = "This is Jira story: {}\n"+"It has below changes:-\n"+"a) error fixed.\n b) new features added.".format(sys.argv[1])
+jira_desc = "This is Jira story: "+sys.argv[1]+" \n"+"It has below changes:-\n"+"a) error fixed.\n b) new features added."
 print(jira_desc)
