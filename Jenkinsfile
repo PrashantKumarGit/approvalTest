@@ -29,7 +29,8 @@ pipeline {
             steps {
                 echo 'Approving...'
                 timeout(time: 1, unit: 'DAYS') {
-                    input message: "${jiraStoryList}", submitter: 'prashantkumar'
+                    input {message: "${jiraStoryList}", submitter: 'prashantkumar', parameters {string(name:'PERSON', defaultValue: 'Bhaskar', description: 'username can be entered')}}
+                    echo "${PERSON}, is proceeding..."
                 }
             }
         }
