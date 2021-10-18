@@ -32,9 +32,8 @@ pipeline {
                     para = input (
                             message: "Can we Proceed?",
                             submitter: "prashantkumar",
-                            parameters: string(name: 'PERSON', defaultValue: 'ABC', description: 'Member')
-                        )
-                    echo "${para}, is proceed"
+                            parameters: [text(name: 'PERSON', defaultValue: 'ABC', description: 'Member')]
+                       )
                 }   
             }
         }
