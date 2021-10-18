@@ -30,17 +30,14 @@ pipeline {
                 script {
                     def para
                     try{
-                        para = input {
-                            message "Can we Proceed?"
-                            ok "Yes"
-                            submitter "prashantkumar"
+                        para = input (
+                            message "Can we Proceed?",
+                            ok "Yes",
+                            submitter "prashantkumar",
                             parameters {
-                                string(name: 'PERSON', defaultValue: 'DigiralVarys', description: 'Member')
+                                string(name: 'PERSON', defaultValue: 'ABC', description: 'Member')
                             }
-                        }
-                        steps {
-                            echo "${para}, is proceeding..."
-                        }
+                        )
                     } catch(all) {
                         echo "${para}, is not proceeding..."
                     }
