@@ -26,19 +26,18 @@ pipeline {
             }
         }
         stage('Approval') {
-            timeout(time: 1, unit: 'DAYS') {
-                input {
-                    message "Can we Proceed?"
-                    ok "Yes"
-                    submitter "prashantkumar"
-                    parameters {
-                        string(name: 'PERSON', defaultValue: 'DigiralVarys', description: 'Member')
-                    }
-                }
-                steps {
-                    echo "${PERSON}, is proceeding..."
+            input {
+                message "Can we Proceed?"
+                ok "Yes"
+                submitter "prashantkumar"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'DigiralVarys', description: 'Member')
                 }
             }
+            steps {
+                echo "${PERSON}, is proceeding..."
+            }
+            
             
         }
         stage('Deploy') {
