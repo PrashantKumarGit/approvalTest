@@ -26,26 +26,25 @@ pipeline {
             }
         }
         stage('Approval') {
-            script {
-                try{
-                    input {
-                        message "Can we Proceed?"
-                        ok "Yes"
-                        submitter "prashantkumar"
-                        parameters {
-                            string(name: 'PERSON', defaultValue: 'DigiralVarys', description: 'Member')
+            steps {
+                script {
+                    try{
+                        input {
+                            message "Can we Proceed?"
+                            ok "Yes"
+                            submitter "prashantkumar"
+                            parameters {
+                                string(name: 'PERSON', defaultValue: 'DigiralVarys', description: 'Member')
+                            }
                         }
+                        steps {
+                            echo "${PERSON}, is proceeding..."
+                        }
+                    } catch(all) {
+                        echo "${PERSON}, is not proceeding..."
                     }
-                    steps {
-                        echo "${PERSON}, is proceeding..."
-                    }
-                } catch(all) {
-                    echo "${PERSON}, is not proceeding..."
-                }
+                }   
             }
-            
-            
-            
         }
         stage('Deploy') {
             steps {
