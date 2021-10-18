@@ -31,12 +31,9 @@ pipeline {
                     def para
                     try{
                         para = input (
-                            message "Can we Proceed?",
-                            ok "Yes",
-                            submitter "prashantkumar",
-                            parameters {
-                                string(name: 'PERSON', defaultValue: 'ABC', description: 'Member')
-                            }
+                            message: "Can we Proceed?",
+                            submitter: "prashantkumar",
+                            parameters: string(name: 'PERSON', defaultValue: 'ABC', description: 'Member')
                         )
                     } catch(all) {
                         echo "${para}, is not proceeding..."
