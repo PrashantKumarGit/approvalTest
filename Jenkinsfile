@@ -26,13 +26,20 @@ pipeline {
             }
         }
         stage('Approval') {
-            steps {
-                echo 'Approving...'
-                timeout(time: 1, unit: 'DAYS') {
-                    input {message: "${jiraStoryList}", submitter: 'prashantkumar', parameters {string(name:'PERSON', defaultValue: 'Bhaskar')}}
+            timeout(time: 1, unit: 'DAYS') {
+                input {
+                    message "Can we Proceed?"
+                    ok "Yes"
+                    submitter "prashantkumar"
+                    parameters {
+                        string(name: 'PERSON', defaultValue: 'DigiralVarys', description: 'Member')
+                    }
+                }
+                steps {
                     echo "${PERSON}, is proceeding..."
                 }
             }
+            
         }
         stage('Deploy') {
             steps {
