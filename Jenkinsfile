@@ -26,7 +26,7 @@ pipeline {
             }
         }
         stage('Approval') {
-            steps {
+            script {
                 try{
                     input {
                         message "Can we Proceed?"
