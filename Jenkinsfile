@@ -29,11 +29,15 @@ pipeline {
             steps {
                 script {
                     def para
+                    try{
                     para = input (
                             message: "Can we Proceed?",
                             submitter: "prashantkumar",
                             parameters: [text(name: 'PERSON', defaultValue: 'ABC', description: 'Member')]
                        )
+                    } catch(all) {
+                        echo "${para}, is aborted."
+                    }
                 }   
             }
         }
