@@ -28,8 +28,9 @@ pipeline {
         stage('Approval') {
             steps {
                 script {
+                    def para
                     try{
-                        input {
+                        para = input {
                             message "Can we Proceed?"
                             ok "Yes"
                             submitter "prashantkumar"
@@ -38,10 +39,10 @@ pipeline {
                             }
                         }
                         steps {
-                            echo "${PERSON}, is proceeding..."
+                            echo "${para}, is proceeding..."
                         }
                     } catch(all) {
-                        echo "${PERSON}, is not proceeding..."
+                        echo "${para}, is not proceeding..."
                     }
                 }   
             }
