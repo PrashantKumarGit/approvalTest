@@ -33,8 +33,9 @@ pipeline {
                     para = input (
                             message: "Can we Proceed?",
                             submitter: "prashantkumar",
-                            parameters: [text(name: 'PERSON', defaultValue: 'ABC', description: 'Member')]
+                            parameters: [text(name: 'PERSON', defaultValue: 'ABC', description: 'Member'), booleanParam(name: 'rd1', defaultValue: true, description: 'Proceed'), booleanParam(name: 'rd1', defaultValue: false, description: 'Abort')]
                        )
+                        echo para['rd1']
                     } catch(all) {
                         echo "${para}, is aborted."
                     }
