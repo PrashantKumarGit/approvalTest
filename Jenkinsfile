@@ -36,6 +36,11 @@ pipeline {
                             parameters: [text(name: 'PERSON', defaultValue: 'ABC', description: 'Member'), choice(name: 'rd1', choices: ['Yes', 'No'], description: 'Proceed')]
                        )
                         echo para['rd1']
+                        if(para['rd1'] == 'No') {
+                            currentBuild.rawBuild.result = Result.ABORTED
+                            throw new hudson.AbortException('Approver rejected the pipeline.')
+                            
+                        }
                     } catch(all) {
                         echo "${para}, is aborted."
                     }
