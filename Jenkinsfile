@@ -37,8 +37,8 @@ pipeline {
                        )
                         echo para['rd1']
                         if(para['rd1'] == 'No') {
-                            currentBuild.rawBuild.result = Result.ABORTED
-                            throw new hudson.AbortException('Approver rejected the pipeline.')
+                            currentBuild.result = 'FAILURE'
+                            error('Failed to Build')
                             
                         }
                     } catch(all) {
