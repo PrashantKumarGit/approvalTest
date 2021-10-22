@@ -33,7 +33,7 @@ pipeline {
                     para = input (
                             message: "Can we Proceed?",
                             submitter: "prashantkumar",
-                            parameters: [text(name: 'PERSON', defaultValue: 'ABC', description: 'Member'), choice(name: 'rd1', choices: 'Yes\No', description: 'Proceed')]
+                            parameters: [text(name: 'PERSON', defaultValue: 'ABC', description: 'Member'), choice(name: 'rd1', choices: ['Yes', 'No'], description: 'Proceed')]
                        )
                         echo para['rd1']
                     } catch(all) {
