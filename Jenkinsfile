@@ -35,7 +35,7 @@ pipeline {
                             [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']
                             ])
                     } catch(err) { // input false
-                        def user = err.getCauses()
+                        def user = err
                         userInput = false
                         echo "Aborted by: [${user}]"
                     }
