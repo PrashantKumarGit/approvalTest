@@ -28,21 +28,16 @@ pipeline {
         stage('Approval') {
             steps {
                 script {
-                    def para
-                    try{
-                    para = input (
-                            message: "Can we Proceed?",
-                            submitter: "prashantkumar",
-                            parameters: [text(name: 'PERSON', defaultValue: 'ABC', description: 'Member'), choice(name: 'rd1', choices: ['Yes', 'No'], description: 'Proceed')]
-                       )
-                        echo para['rd1']
-                        if(para['rd1'] == 'No') {
-                            currentBuild.result = 'FAILURE'
-                            error('Failed to Build')
-                            
-                        }
-                    } catch(all) {
-                        echo "${para}, is aborted."
+                    def userInput
+                    try {
+                        userInput = input(
+                            id: 'Proceed1', message: 'Was this successful?', parameters: [
+                            [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']
+                            ])
+                    } catch(err) { // input false
+                        def user = err.getCauses()
+                        userInput = false
+                        echo "Aborted by: [${user}]"
                     }
                 }   
             }
